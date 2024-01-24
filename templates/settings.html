@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block page_name %}
+	Настройки
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+        <h2>Настройки</h2>
+        <div class="d-flex p-2 border shadow rounded bg-body-tertiary">
+            <ul class="nav nav-pills flex-column me-2">
+                <li class="nav-item">
+                    <button class="nav-link" id="main-tab" data-bs-toggle="tab" data-bs-target="#main">
+                        Основные настройки
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" id="categories-tab" data-bs-toggle="tab" data-bs-target="#categories">
+                        Категории транзакций
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link">Чтобы что?</button>
+                </li>
+
+            </ul>
+            <div class="vr me-2"></div>
+            <div class="tab-content">
+                <div class="tab-pane fade" id="main">
+                    Foo
+                </div>
+                <div class="tab-pane fade" id="categories">
+                    <h3>Категории трат</h3>
+                    <div class="d-flex flex-column w-100">
+                        <ul class="list-group">
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span class="me-2">Супермаркеты</span>
+                                <button class="btn btn-sm btn-outline-danger ratio-1x1"><i class="fa-solid fa-trash fa-xs"></i></button>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span class="me-2">Проезд</span>
+                                <button class="btn btn-sm btn-outline-danger ratio-1x1"><i class="fa-solid fa-trash fa-xs"></i></button>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span class="me-2">Тяжелые наркотики</span>
+                                <button class="btn btn-sm btn-outline-danger ratio-1x1"><i class="fa-solid fa-trash fa-xs"></i></button>
+                            </li>
+                        </ul>
+                        <button class="btn btn-sm btn-primary mt-2"><i class="fa-solid fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

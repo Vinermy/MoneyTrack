@@ -4,5 +4,89 @@
 {% endblock %}
 
 {% block content %}
-	Hello world!
+    <div class="container mb-3">
+        <div class="d-flex p-2 justify-content-around rounded border shadow bg-body-tertiary">
+            <div>
+                <h1 class="text-success fw-bold text-center">
+                    <i class="fa-solid fa-arrow-trend-up"></i>
+                    1000
+                </h1>
+                <h5 class="text-secondary fw-light text-center">Изменение за сегодня</h5>
+            </div>
+            <div>
+                <h1 class="text-danger fw-bold text-center">
+                    <i class="fa-solid fa-arrow-trend-down"></i>
+                    10000
+                </h1>
+                <h5 class="text-secondary fw-light text-center">Изменение за неделю</h5>
+            </div>
+            <div>
+                <h1 class="text-success fw-bold text-center">
+                    <i class="fa-solid fa-arrow-trend-up"></i>
+                    100000
+                </h1>
+                <h5 class="text-secondary fw-light text-center">Изменение за месяц</h5>
+            </div>
+        </div>
+    </div>
+
+	<div class="container mb-3">
+        <form method="post">
+            <div class="d-flex justify-content-around align-middle rounded border shadow p-2 bg-body-tertiary">
+                <div class="input-group me-2 w-25">
+                    <label class="input-group-text" for="amount">Сумма:</label>
+                    <input type="number" class="form-control" name="amount" id="amount">
+                </div>
+                <div class="input-group me-2 w-25">
+                    <label class="input-group-text" for="category">Категория:</label>
+                    <select class="form-control" name="category" id="category">
+                        <option>Foo</option>
+                        <option>Bar</option>
+                        <option>Foobar</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary w-25">Добавить транзакцию</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="container">
+        <div class="rounded border shadow p-2 bg-body-tertiary">
+            <div class="d-flex justify-content-between">
+                <p class="h3">Последние транзакции:</p>
+                <a class="icon-link icon-link-hover">
+                    Посмотреть все
+                    <i class="fa-solid fa-chevron-right bi"></i>
+                </a>
+            </div>
+            <div class="list-group">
+                <a class="list-group-item list-group-item-action list-group-item-danger d-flex justify-content-between">
+                    <span class="w-25 text-start">Абоба 1</span>
+                    <span class="w-25 text-center">-10000</span>
+                    <span class="w-25 text-end">5 наносек назад</span>
+                </a>
+                <a class="list-group-item list-group-item-action list-group-item-success d-flex justify-content-between">
+                    <span class="w-25 text-start">Абоба 2</span>
+                    <span class="w-25 text-center">+10000</span>
+                    <span class="w-25 text-end">5 наносек назад</span>
+                </a>
+                <a class="list-group-item list-group-item-action list-group-item-danger d-flex justify-content-between">
+                    <span class="w-25 text-start">Абоба 3</span>
+                    <span class="w-25 text-center">-10000</span>
+                    <span class="w-25 text-end">5 наносек назад</span>
+                </a>
+                <a class="list-group-item list-group-item-action list-group-item-success d-flex justify-content-between">
+                    <span class="w-25 text-start">Абоба 4</span>
+                    <span class="w-25 text-center">+10000</span>
+                    <span class="w-25 text-end">5 наносек назад</span>
+                </a>
+                <a class="list-group-item list-group-item-action list-group-item-danger d-flex justify-content-between">
+                    <span class="w-25 text-start">Абоба 5</span>
+                    <span class="w-25 text-center">-10000</span>
+                    <span class="w-25 text-end">5 наносек назад</span>
+                </a>
+
+            </div>
+        </div>
+    </div>
 {% endblock %}
