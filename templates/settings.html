@@ -19,7 +19,7 @@
                     </button>
                 </li>
                 <li class="nav-item">
-                    <button class="nav-link">Чтобы что?</button>
+                    <button class="nav-link" id="accounts-tab" data-bs-toggle="tab" data-bs-target="#accounts">Счета</button>
                 </li>
 
             </ul>
@@ -30,25 +30,44 @@
                 </div>
                 <div class="tab-pane fade" id="categories">
                     <h3>Категории трат</h3>
-                    <div class="d-flex flex-column w-100">
+                    <div class="d-flex flex-column">
                         <ul class="list-group">
-                            <li class="list-group-item d-flex justify-content-between">
-                                <span class="me-2">Супермаркеты</span>
-                                <button class="btn btn-sm btn-outline-danger ratio-1x1"><i class="fa-solid fa-trash fa-xs"></i></button>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between">
-                                <span class="me-2">Проезд</span>
-                                <button class="btn btn-sm btn-outline-danger ratio-1x1"><i class="fa-solid fa-trash fa-xs"></i></button>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between">
-                                <span class="me-2">Тяжелые наркотики</span>
-                                <button class="btn btn-sm btn-outline-danger ratio-1x1"><i class="fa-solid fa-trash fa-xs"></i></button>
-                            </li>
+                            {% for category in categories %}
+                                <li class="list-group-item d-flex justify-content-between">
+                                    <span class="me-2">{{ category.name }}</span>
+                                    <button class="btn btn-sm btn-outline-danger ratio-1x1" data-bs-toggle="modal" data-bs-target="#delete-category-{{ category.id }}">
+                                        <i class="fa-solid fa-trash fa-xs"></i>
+                                    </button>
+                                </li>
+                            {% empty %}
+                            	<h5>Нет категорий трат.</h5>
+                            {% endfor %}
+                            
+                            
                         </ul>
                         <button class="btn btn-sm btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#addCategory">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
+                </div>
+                <div class="tab-pane fade" id="accounts">
+                    <ul class="list-group">
+                        {% for category in categories %}
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span class="me-2">{{ category.name }}</span>
+                                <button class="btn btn-sm btn-outline-danger ratio-1x1" data-bs-toggle="modal" data-bs-target="#delete-category-{{ category.id }}">
+                                    <i class="fa-solid fa-trash fa-xs"></i>
+                                </button>
+                            </li>
+                        {% empty %}
+                            <h5>Нет категорий трат.</h5>
+                        {% endfor %}
+                        
+                        
+                    </ul>
+                    <button class="btn btn-sm btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#addCategory">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -60,7 +79,9 @@
     <div class="modal" id="addCategory">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form>
+                <form method="post">
+                    <input type="hidden" name="form-type" value="add-category">
+                    {% csrf_token %}
                     <div class="modal-header">
                         <h5 class="modal-title">Добавить новую категорию</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
@@ -71,7 +92,7 @@
                                 <label for="name" class="input-group-text">
                                     Название:
                                 </label>
-                                <input type="text" class="form-control" name="name" id="name">
+                                <input type="text" class="form-control" name="name" id="name" required>
                             </div>
                         
                     </div>
@@ -83,4 +104,33 @@
             </div>
         </div>
     </div>
+    
+    {% for category in categories %}
+    	<div class="modal" id="delete-category-{{ category.id }}">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="form-type" value="delete-category">
+                        <input type="hidden" name="category-id" value="{{ category.id }}">
+                        <div class="modal-header">
+                            <h5 class="modal-title">
+                                Удалить категорию
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            Вы собираетесь удалить категорию <b>"{{ category.name }}"</b>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-danger">
+                                Подтвердить
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    
 {% endblock modals %}

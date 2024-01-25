@@ -2,3 +2,4 @@
 .idea
 config.ini
 db.sqlite3
+moneytrack_app/migrations

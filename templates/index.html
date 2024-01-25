@@ -31,21 +31,34 @@
     </div>
 
 	<div class="container mb-3">
+        {% if not categories %}
+            <span class="text-danger">Добавьте по крайней мере одну категорию</span>
+        {% endif %}
         <form method="post">
             <div class="d-flex justify-content-around align-middle rounded border shadow p-2 bg-body-tertiary">
                 <div class="input-group me-2 w-25">
                     <label class="input-group-text" for="amount">Сумма:</label>
-                    <input type="number" class="form-control" name="amount" id="amount">
+                    <input type="number" class="form-control" name="amount" id="amount" {% if not categories %}disabled{% endif %}>
                 </div>
                 <div class="input-group me-2 w-25">
                     <label class="input-group-text" for="category">Категория:</label>
-                    <select class="form-control" name="category" id="category">
-                        <option>Foo</option>
-                        <option>Bar</option>
-                        <option>Foobar</option>
+                    <select class="form-control" name="category" id="category" {% if not categories %}disabled{% endif %}>
+                        {% for category in categories %}
+                        	<option value="{{ category.id }}">{{ category.name }}</option>
+                        {% endfor %}
+                        
                     </select>
                 </div>
-                <button type="submit" class="btn btn-primary w-25">Добавить транзакцию</button>
+                <div class="input-group me-2 w-25">
+                    <label class="input-group-text" for="account">Счет:</label>
+                    <select class="form-control" name="account" id="account" {% if not categories %}disabled{% endif %}>
+                        {% for category in categories %}
+                        	<option value="{{ category.id }}">{{ category.name }}</option>
+                        {% endfor %}
+                        
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary w-25" {% if not categories %}disabled{% endif %}>Добавить транзакцию</button>
             </div>
         </form>
     </div>
