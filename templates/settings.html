@@ -45,10 +45,42 @@
                                 <button class="btn btn-sm btn-outline-danger ratio-1x1"><i class="fa-solid fa-trash fa-xs"></i></button>
                             </li>
                         </ul>
-                        <button class="btn btn-sm btn-primary mt-2"><i class="fa-solid fa-plus"></i></button>
+                        <button class="btn btn-sm btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#addCategory">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    
 {% endblock %}
+
+{% block modals %}
+    <div class="modal" id="addCategory">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form>
+                    <div class="modal-header">
+                        <h5 class="modal-title">Добавить новую категорию</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        
+                            <div class="input-group">
+                                <label for="name" class="input-group-text">
+                                    Название:
+                                </label>
+                                <input type="text" class="form-control" name="name" id="name">
+                            </div>
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="reset" class="btn btn-secondary">Очистить</button>
+                        <button type="submit" class="btn btn-primary">Добавить</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock modals %}
